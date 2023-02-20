@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">CCD</string>
+    <string name="sign_up_now_avail_best_discount"><![CDATA[Sign up now & avail best discount]]></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

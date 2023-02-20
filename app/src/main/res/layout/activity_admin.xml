@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AdminActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_baseline_menu_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="The Coffe House"
+            android:fontFamily="@font/fontone"
+            android:layout_marginTop="5dp"
+            android:textColor="#000000"
+            android:textSize="40sp"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_baseline_menu_24" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/hot"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:background="@drawable/back"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:textSize="11sp"
+            android:textAlignment="center"
+            android:text="Add Product "
+            android:textColor="@color/white"
+            tools:ignore="RtlSymmetry" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cold"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:background="@drawable/back"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:text="Order History"
+            android:textAlignment="center"
+            android:textSize="11sp"
+            android:textColor="@color/white"
+            tools:ignore="RtlSymmetry" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/breakfast"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:background="@drawable/back"
+            android:layout_weight="1"
+            android:text="Add User"
+            android:textSize="11sp"
+            android:textColor="@color/white"
+            tools:ignore="RtlSymmetry" />
+
+    </LinearLayout>
+  <FrameLayout
+      android:id="@+id/framelayout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
+
+</LinearLayout>

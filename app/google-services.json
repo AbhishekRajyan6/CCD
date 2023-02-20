@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "174629262189",
+    "project_id": "ccda-36b75",
+    "storage_bucket": "ccda-36b75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174629262189:android:25e12570bc96c84a4a8064",
+        "android_client_info": {
+          "package_name": "com.example.ccd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "174629262189-qj54mh9g5nflg5eseodhj4v903ffo0lp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzgT7dLQS8Iq5pC6d2NogcUJV8NWAU6uA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "174629262189-qj54mh9g5nflg5eseodhj4v903ffo0lp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
