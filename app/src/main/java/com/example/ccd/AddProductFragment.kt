@@ -51,11 +51,11 @@ class AddProductFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
+
             }
 
         }

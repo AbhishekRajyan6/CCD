@@ -7,10 +7,10 @@ class AdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin)
-        val addUserFragment = AdminAddUserFragment()
+        val addProductFragment = AddProductFragment()
 
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.framelayout,addUserFragment)
+            replace(R.id.framelayout,addProductFragment)
             commit();
         }
 
