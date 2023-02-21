@@ -13,7 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Firstname"
                 android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                     android:textColorHint="@color/black"
                     android:drawablePadding="10dp"
                     android:textSize="15sp"
-                    android:hint="FIrst name"/>
+                    android:hint="Product Name"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/lastname"
@@ -60,10 +60,62 @@
                     android:textColorHint="@color/black"
                     android:drawablePadding="10dp"
                     android:textSize="15sp"
-                    android:hint="Last Name"/>
+                    android:hint="Product Description"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/product_price"
+                android:layout_width="match_parent"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="5dp"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeWidth="1dp"
+                app:hintTextColor="@color/black"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_marginEnd="40dp"
+                app:boxCornerRadiusBottomEnd="20dp"
+                android:layout_height="65dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:drawableStart="@drawable/ic_baseline_person_24"
+                    android:backgroundTint="@color/white"
+                    android:paddingTop="9dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:drawablePadding="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="15sp"
+                    android:hint="Product Price"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:background="@drawable/textback"/>
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/textback"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chooseimg"
+                android:layout_width="match_parent"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="44dp"
+                android:text="select Image"
+                android:textColor="@color/white"
+                android:background="@drawable/back"/>
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/signin"
                 android:layout_width="match_parent"
@@ -71,7 +123,7 @@
                 android:layout_marginEnd="70dp"
                 android:layout_marginTop="20dp"
                 android:layout_height="44dp"
-                android:text="SIGN IN"
+                android:text="Add Product"
                 android:textColor="@color/white"
                 android:background="@drawable/back"/>
         </LinearLayout>

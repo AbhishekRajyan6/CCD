@@ -3,4 +3,10 @@
     <string name="sign_up_now_avail_best_discount"><![CDATA[Sign up now & avail best discount]]></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="Select_Category">
+        <item>Hot Beverages</item>
+        <item>Cold Beverages</item>
+        <item>Breakfast</item>
+    </string-array>
 </resources>
