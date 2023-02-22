@@ -100,8 +100,8 @@ class RegistrationActivity : AppCompatActivity() {
               }
               else{
                //   sqldata()
-              //  Passdata()
-                  Register()
+               Passdata()
+              //    Register()
               }
 
             }

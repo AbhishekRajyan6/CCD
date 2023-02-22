@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         login.setOnClickListener(View.OnClickListener {
               // sqlloginmethod()
-             //  loginmethod()
+            //   loginmethod()
             Loginuser()
         })
 

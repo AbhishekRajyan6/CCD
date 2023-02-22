@@ -1,6 +1,13 @@
 package com.example.ccd
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.util.Base64.*
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +15,22 @@ import android.view.ViewGroup
 import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.RadioButton
 import android.widget.Spinner
+import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.AppCompatButton
+import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import java.io.ByteArrayOutputStream
+import java.util.Base64.Encoder
+import java.util.Base64
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +46,21 @@ class AddProductFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var spinner: Spinner
+    private lateinit var r1: RadioButton
+    private lateinit var r2: RadioButton
+    private lateinit var r3: RadioButton
+    private lateinit var insertdata: AppCompatButton
+    private lateinit var selectimg: AppCompatButton
+    lateinit var radiodata : String
+    lateinit var productname : TextInputLayout
+    lateinit var productdescription : TextInputLayout
+    lateinit var productprice : TextInputLayout
+    lateinit var product : ImageView
+    lateinit var productnames : String
+    lateinit var productdescriptions : String
+    lateinit var productprices : String
+    var productimg : String? = ""
+    lateinit var db : DatabaseReference
     val option = arrayOf("Hot Beverages","Cold Beverages","Breakfast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,35 +70,82 @@ class AddProductFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_product, container, false)
-        spinner = view.findViewById(R.id.spinner)
+       r1 = view.findViewById(R.id.hb)
+        r2 = view.findViewById(R.id.cb)
+        r3 = view.findViewById(R.id.breakf)
+        productname = view.findViewById(R.id.product_name)
+        productdescription = view.findViewById(R.id.product_description)
+        productprice = view.findViewById(R.id.product_price)
+        product = view.findViewById(R.id.product_img)
+        insertdata = view.findViewById(R.id.add_product)
+        selectimg = view.findViewById(R.id.chooseimg)
 
-        val arrayAdapter = ArrayAdapter<String>(requireActivity(),android.R.layout.simple_list_item_1,option)
-        spinner.adapter = arrayAdapter
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
+        r1.setOnCheckedChangeListener{buttonView,isChecked ->
+            radiodata = r1.text.toString()
         }
+        r2.setOnCheckedChangeListener{buttonView,isChecked ->
+            radiodata = r2.text.toString()
+            Toast.makeText(activity,radiodata,Toast.LENGTH_SHORT).show()
+        }
+        r3.setOnCheckedChangeListener{buttonView,isChecked ->
+            radiodata = r3.text.toString()
+        }
+
+        insertdata.setOnClickListener(View.OnClickListener {
+            productnames = productname.getEditText()?.getText().toString()
+            productdescriptions = productdescription.getEditText()?.getText().toString()
+            productprices = productprice.getEditText()?.getText().toString()
+            db = FirebaseDatabase.getInstance().getReference("Category").child(radiodata).child(productnames)
+            val item = products(productnames,productdescriptions,productprices,productimg)
+            val databaseReference = FirebaseDatabase.getInstance().reference
+            val id = databaseReference.push().key
+            db.setValue(item).addOnCompleteListener {
+               Toast.makeText(activity,"Product Added",Toast.LENGTH_LONG).show()
+            }.addOnFailureListener {
+                Toast.makeText(activity,"Failed!",Toast.LENGTH_LONG).show()
+            }
+        })
+
+        selectimg.setOnClickListener(View.OnClickListener {
+
+        })
+
+
 
 
         return view
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private val ActivityResultLauncher = registerForActivityResult<Intent,ActivityResult>(
+        ActivityResultContracts.StartActivityForResult()
+    ){result:ActivityResult ->
+        if (result.resultCode==RESULT_OK){
+            val uri = result.data!!.data
+            try{
+                val inputStream = activity?.contentResolver?.openInputStream(uri!!)
+                val myBitmap = BitmapFactory.decodeStream(inputStream)
+                val stream = ByteArrayOutputStream()
+                myBitmap.compress(Bitmap.CompressFormat.JPEG,100,stream)
+                val bytes = stream.toByteArray()
+              //  productimg = Base64.getEncoder().encodeToString(bytes)
+                product.setImageBitmap(myBitmap)
+                inputStream!!.close()
+            }
+            catch (ex: Exception){
+
+            }
+        }
+
+    }
+
 
     companion object {
         /**

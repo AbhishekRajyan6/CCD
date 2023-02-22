@@ -15,7 +15,7 @@
             android:orientation="vertical"
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Firstname"
+                android:id="@+id/product_name"
                 android:layout_width="match_parent"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="30dp"
@@ -39,7 +39,7 @@
                     android:hint="Product Name"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/lastname"
+                android:id="@+id/product_description"
                 android:layout_width="match_parent"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="5dp"
@@ -88,17 +88,45 @@
                     android:hint="Product Price"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Spinner
-                android:id="@+id/spinner"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="20dp"
-                android:textAlignment="center"
-                android:background="@drawable/textback"/>
+                android:layout_height="wrap_content"
+                android:text="select Category"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="40dp"/>
+
+
+          <RadioGroup
+              android:layout_width="match_parent"
+              android:layout_marginTop="5dp"
+              android:layout_marginStart="40dp"
+              android:layout_marginEnd="30dp"
+              android:layout_height="120dp">
+              <RadioButton
+                  android:id="@+id/hb"
+                  android:layout_width="match_parent"
+                  android:layout_height="40dp"
+                  android:text="HotBeverages"/>
+              <RadioButton
+                  android:id="@+id/cb"
+                  android:layout_width="match_parent"
+                  android:layout_height="40dp"
+                  android:text="ColdBeverages"/>
+              <RadioButton
+                  android:id="@+id/breakf"
+                  android:layout_width="match_parent"
+                  android:layout_height="40dp"
+                  android:text="Breakfast"/>
+
+          </RadioGroup>
+
+
 
             <ImageView
+                android:id="@+id/product_img"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginStart="30dp"
@@ -117,13 +145,14 @@
                 android:textColor="@color/white"
                 android:background="@drawable/back"/>
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/signin"
+                android:id="@+id/add_product"
                 android:layout_width="match_parent"
                 android:layout_marginStart="70dp"
                 android:layout_marginEnd="70dp"
                 android:layout_marginTop="20dp"
                 android:layout_height="44dp"
                 android:text="Add Product"
+                android:layout_marginBottom="20dp"
                 android:textColor="@color/white"
                 android:background="@drawable/back"/>
         </LinearLayout>

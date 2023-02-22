@@ -33,23 +33,23 @@ class ProdileActivity : AppCompatActivity() {
         provinces = findViewById(R.id.provinces)
         postalcode =  findViewById(R.id.postalcode)
         DB = DBHelper(this)
-    //    email = intent.extras!!.getString("email").toString()
+  //      email = intent.extras!!.getString("email").toString()
       //    sqldata()
-         // getdata()
+         getdata()
 
 
     }
 
     private fun sqldata() {
-   //     val c = DB.searchData(email!!)
-  //      c!!.moveToNext()
+        val c = DB.searchData(email!!)
+        c!!.moveToNext()
 //
- //       firstname.setText(c.getString(0).toString())
-   //     lastname.setText(c.getString(1).toString())
-    //    Email.setText(c.getString(2).toString())
-     //   address.setText(c.getString(3).toString())
-      //  provinces.setText(c.getString(4).toString())
-       // postalcode.setText(c.getString(5).toString())
+     firstname.setText(c.getString(0).toString())
+        lastname.setText(c.getString(1).toString())
+        Email.setText(c.getString(2).toString())
+        address.setText(c.getString(3).toString())
+        provinces.setText(c.getString(4).toString())
+        postalcode.setText(c.getString(5).toString())
     }
 
     private fun getdata() {
