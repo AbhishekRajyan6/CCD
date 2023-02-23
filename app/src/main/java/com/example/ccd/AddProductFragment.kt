@@ -28,6 +28,7 @@ import androidx.appcompat.widget.AppCompatButton
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
 import java.util.Base64.Encoder
 import java.util.Base64
@@ -61,6 +62,13 @@ class AddProductFragment : Fragment() {
     lateinit var productprices : String
     var productimg : String? = ""
     lateinit var db : DatabaseReference
+
+    private var imageUri : Uri? = null
+
+    private val selectImage = registerForActivityResult(ActivityResultContracts.GetContent()){
+        imageUri =it
+         product.setImageURI(imageUri)
+    }
     val option = arrayOf("Hot Beverages","Cold Beverages","Breakfast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,18 +110,24 @@ class AddProductFragment : Fragment() {
             productnames = productname.getEditText()?.getText().toString()
             productdescriptions = productdescription.getEditText()?.getText().toString()
             productprices = productprice.getEditText()?.getText().toString()
-            db = FirebaseDatabase.getInstance().getReference("Category").child(radiodata).child(productnames)
-            val item = products(productnames,productdescriptions,productprices,productimg)
-            val databaseReference = FirebaseDatabase.getInstance().reference
-            val id = databaseReference.push().key
-            db.setValue(item).addOnCompleteListener {
-               Toast.makeText(activity,"Product Added",Toast.LENGTH_LONG).show()
-            }.addOnFailureListener {
-                Toast.makeText(activity,"Failed!",Toast.LENGTH_LONG).show()
-            }
+
+        val storageref = FirebaseStorage.getInstance().getReference("image").child(radiodata).child(productnames)
+
+                storageref.putFile(imageUri!!)
+                .addOnCompleteListener {
+                    storageref.downloadUrl.addOnSuccessListener {
+                        storedata(it)
+                    }.addOnFailureListener {
+                       Toast.makeText(activity,it.message,Toast.LENGTH_LONG).show()
+                    }
+                }.addOnFailureListener{
+                        Toast.makeText(activity,it.message,Toast.LENGTH_LONG).show()
+                    }
+
         })
 
         selectimg.setOnClickListener(View.OnClickListener {
+            selectImage.launch("image/*")
 
         })
 
@@ -121,6 +135,19 @@ class AddProductFragment : Fragment() {
 
 
         return view
+    }
+
+    private fun storedata(imageUrl: Uri?) {
+        db = FirebaseDatabase.getInstance().getReference("Category").child(radiodata).child(productnames)
+        productimg = imageUrl.toString()
+        val item = products(productnames,productdescriptions,productprices,productimg)
+        val databaseReference = FirebaseDatabase.getInstance().reference
+        val id = databaseReference.push().key
+        db.setValue(item).addOnCompleteListener {
+            Toast.makeText(activity,"Product Added",Toast.LENGTH_LONG).show()
+        }.addOnFailureListener {
+            Toast.makeText(activity,"Failed!",Toast.LENGTH_LONG).show()
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
