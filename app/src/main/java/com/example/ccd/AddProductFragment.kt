@@ -111,9 +111,9 @@ class AddProductFragment : Fragment() {
             productdescriptions = productdescription.getEditText()?.getText().toString()
             productprices = productprice.getEditText()?.getText().toString()
 
-        val storageref = FirebaseStorage.getInstance().getReference("image").child(radiodata).child(productnames)
+            val storageref = FirebaseStorage.getInstance().getReference("image").child(radiodata).child(productnames)
 
-                storageref.putFile(imageUri!!)
+                 storageref.putFile(imageUri!!)
                 .addOnCompleteListener {
                     storageref.downloadUrl.addOnSuccessListener {
                         storedata(it)

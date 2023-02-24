@@ -17,5 +17,10 @@ class HomeActivity : AppCompatActivity() {
         imageList.add(SlideModel(R.drawable.offer3,ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.offer4,ScaleTypes.CENTER_CROP))
         imageSlider.setImageList(imageList,ScaleTypes.FIT);
+        val hotFragment = HotFragment()
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.framelayout,hotFragment)
+            commit();
+        }
     }
 }
